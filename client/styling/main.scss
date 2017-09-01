@@ -17,4 +17,31 @@ body {
     margin-bottom: 0;
   }
 
+/*///
+ CREATOR Styling
+*////
+
+.div-release-main-img {
+  position: relative;
+  text-align: center;
+}
+
+.release-main-img {
+  width: auto;
+  height: 300px;
+}
+
+.release-main-img-crop {
+  margin: 0 auto;
+  width: 80%;
+  height: 300px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+
 }

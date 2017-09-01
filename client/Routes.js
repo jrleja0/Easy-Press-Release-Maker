@@ -4,7 +4,7 @@ import {Router} from 'react-router';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import {Main} from './components';
+import {Creator, Main} from './components';
 //import { fetchImages } from './store';
 
 /*///
@@ -19,7 +19,9 @@ class Routes extends Component {
   render () {
     return (
       <Router history={history}>
-        <Main />
+        <Main>
+          <Creator />
+        </Main>
       </Router>
     );
   }
