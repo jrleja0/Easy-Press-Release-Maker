@@ -16,17 +16,17 @@ class Creator extends React.Component {
     };
 
     this.onDocumentDrag = this.onDocumentDrag.bind(this);
-    this.onDocumentDrop = this.onDocumentDrop.bind(this);
+    this.onPhotoDrop = this.onPhotoDrop.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('drop', this.onDocumentDrop, false);
+    document.addEventListener('drop', this.onPhotoDrop, false);
     document.addEventListener('dragover', this.onDocumentDrag, false);
     document.addEventListener('dragleave', this.onDocumentDrag, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('drop', this.onDocumentDrop, false);
+    document.removeEventListener('drop', this.onPhotoDrop, false);
     document.removeEventListener('dragover', this.onDocumentDrag, false);
     document.removeEventListener('dragleave', this.onDocumentDrag, false);
   }
@@ -35,7 +35,7 @@ class Creator extends React.Component {
     event.preventDefault();
   }
 
-  onDocumentDrop(event) {
+  onPhotoDrop(event) {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
     const reader = new FileReader();
