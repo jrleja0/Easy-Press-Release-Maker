@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {BasicInput, BasicInputWithCheckbox} from './index';
 
 /*///
  COMPONENT
@@ -12,7 +13,9 @@ class Creator extends React.Component {
 
     this.state = {
       imgSrc: '/assets/jrl_logo.png',
-      crop: false
+      crop: false,
+      query: '',
+      showAjaxSpinner: false
     };
 
     this.onDocumentDrag = this.onDocumentDrag.bind(this);
@@ -48,6 +51,8 @@ class Creator extends React.Component {
   }
 
   render() {
+    const { query, showAjaxSpinner } = this.state;
+
     return (
       <div>
         <div className="div-release-main-img">
@@ -55,6 +60,17 @@ class Creator extends React.Component {
             <img className="release-main-img img-fluid" src={this.state.imgSrc} alt="drag your image here" />
           </div>
           <div className="div-img-cover" />
+        </div>
+        <div className="container">
+          <form onSubmit={this.handleSubmit}>
+            <BasicInputWithCheckbox name="Image Credits" handleChange={this.handleChange} query={query} type="text" checkboxLabel="Crop Image" />
+            <BasicInput name="Title" handleChange={this.handleChange} query={query} type="text" />
+            <BasicInputWithCheckbox name="Date" handleChange={this.handleChange} query={query} type="date" placeholder="" checkboxLabel="Today's Date" />
+            <BasicInput name="Location" handleChange={this.handleChange} query={query} type="text" />
+            <BasicInput name="Main Text" handleChange={this.handleChange} query={query} type="text" />
+            <BasicInput name="Secondary Text" handleChange={this.handleChange} query={query} type="text" />
+            <BasicInput name="Text About Company" handleChange={this.handleChange} query={query} type="text" />
+          </form>
         </div>
       </div>
     );
@@ -69,3 +85,11 @@ export default Creator;
 Creator.propTypes = {
 
 };
+
+// Photo Credits
+// Title
+// Date
+// Location
+// Main Text
+// Standard Text about Company
+// Additional information / Sections unique to the company
