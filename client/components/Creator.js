@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {BasicInput, BasicInputWithCheckbox} from './index';
+import {BasicInput, BasicInputWithCheckbox, BasicTextArea} from './index';
 
 /*///
  COMPONENT
@@ -14,12 +14,14 @@ class Creator extends React.Component {
     this.state = {
       imgSrc: '/assets/jrl_logo.png',
       crop: false,
-      query: '',
+      docData: {},
       showAjaxSpinner: false
     };
 
     this.onDocumentDrag = this.onDocumentDrag.bind(this);
     this.onPhotoDrop = this.onPhotoDrop.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -50,26 +52,47 @@ class Creator extends React.Component {
     reader.readAsDataURL(file);
   }
 
+  handleChange(event) {
+    console.log(event.target);
+    const dataName = event.target.id;
+    this.setState({
+      docData: Object.assign({}, this.state.docData, { [dataName]: event.target.value })
+    });
+  }
+
+  handleSubmit(event) {
+    // event.preventDefault();
+    // this.fetchGoogleSearchTitles(this.state.query);
+    // this.setState({
+    //   query: '',
+    //   showAjaxSpinner: true
+    // });
+  }
+
   render() {
-    const { query, showAjaxSpinner } = this.state;
+    const { imgSrc, crop, docData, showAjaxSpinner } = this.state;
 
     return (
       <div>
         <div className="div-release-main-img">
-          <div className={this.state.crop ? 'release-main-img-crop' : ''}>
-            <img className="release-main-img img-fluid" src={this.state.imgSrc} alt="drag your image here" />
+          <div className={crop ? 'release-main-img-crop' : ''}>
+            <img className="release-main-img img-fluid" src={imgSrc} alt="drag your image here" />
           </div>
           <div className="div-img-cover" />
         </div>
-        <div className="container">
+        <div className="form-container">
           <form onSubmit={this.handleSubmit}>
-            <BasicInputWithCheckbox name="Image Credits" handleChange={this.handleChange} query={query} type="text" checkboxLabel="Crop Image" />
-            <BasicInput name="Title" handleChange={this.handleChange} query={query} type="text" />
-            <BasicInputWithCheckbox name="Date" handleChange={this.handleChange} query={query} type="date" placeholder="" checkboxLabel="Today's Date" />
-            <BasicInput name="Location" handleChange={this.handleChange} query={query} type="text" />
-            <BasicInput name="Main Text" handleChange={this.handleChange} query={query} type="text" />
-            <BasicInput name="Secondary Text" handleChange={this.handleChange} query={query} type="text" />
-            <BasicInput name="Text About Company" handleChange={this.handleChange} query={query} type="text" />
+            <table>
+              <tbody>
+                <BasicInputWithCheckbox name="Image Credits" handleChange={this.handleChange} inputData={docData[name]} type="text" checkboxLabel="Crop Image" />
+                <BasicInput name="Title" handleChange={this.handleChange} inputData={docData[name]} type="text" />
+                <BasicInputWithCheckbox name="Date" handleChange={this.handleChange} inputData={docData[name]} type="date" placeholder="" checkboxLabel="Today's Date" />
+                <BasicInput name="Location" handleChange={this.handleChange} inputData={docData[name]} type="text" />
+                <BasicTextArea name="Main Text" handleChange={this.handleChange} inputData={docData[name]} type="text" />
+                <BasicTextArea name="Secondary Text" handleChange={this.handleChange} inputData={docData[name]} type="text" />
+                <BasicTextArea name="Text About Company" handleChange={this.handleChange} inputData={docData[name]} type="text" />
+              </tbody>
+            </table>
           </form>
         </div>
       </div>

@@ -1,3 +1,3 @@
 export {default as Main} from './Main';
-export {BasicInput, BasicInputWithCheckbox} from './BasicInput';
+export {BasicInput, BasicInputWithCheckbox, BasicTextArea} from './BasicInput';
 export {default as Creator} from './Creator';

@@ -21,31 +21,64 @@ body {
  CREATOR Styling
 *////
 
-.div-release-main-img {
-  position: relative;
-  text-align: center;
-}
-
-.release-main-img {
-  width: auto;
-  height: 300px;
-}
-
-.release-main-img-crop {
-  margin: 0 auto;
-  width: 80%;
-  height: 300px;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: auto;
+  .div-release-main-img {
+    position: relative;
+    text-align: center;
   }
 
-}
+  .release-main-img {
+    width: auto;
+    height: 300px;
+  }
 
-.input-width {
-  width: 50%;
-}
+  .release-main-img-crop {
+    margin: 0 auto;
+    width: 80%;
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+/*///
+ Form Styling
+*////
+
+  .form-container {
+    table {
+      margin: 0 auto;
+    }
+
+    div {
+      display: inline-block;
+    }
+  }
+
+  .input-basic {
+    div {
+      display: inherit;
+    }
+
+    input, textarea {
+      width: 500px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    label {
+      width: 160px;
+    }
+  }
+
+  .checkbox-basic {
+    padding-left: 15px;
+
+    input {
+      margin-left: 10px;
+    }
+  }
 
 }
