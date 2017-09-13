@@ -53,7 +53,6 @@ class Creator extends React.Component {
   }
 
   handleChange(event) {
-    console.log(event.target);
     const dataName = event.target.id;
     this.setState({
       docData: Object.assign({}, this.state.docData, { [dataName]: event.target.value })
