@@ -43,6 +43,11 @@ body {
     }
   }
 
+  .drag-image-here {
+    position: absolute;
+    top: 0;
+  }
+
 /*///
  Form Styling
 *////
@@ -50,10 +55,6 @@ body {
   .form-container {
     table {
       margin: 0 auto;
-    }
-
-    div {
-      display: inline-block;
     }
   }
 
@@ -63,9 +64,10 @@ body {
     }
 
     input, textarea {
-      width: 500px;
+      width: 726px;
       margin-top: 5px;
       margin-bottom: 5px;
+      font-size: 16px;
     }
 
     label {
@@ -76,8 +78,56 @@ body {
   .checkbox-basic {
     padding-left: 15px;
 
+    div {
+      display: inline-block;
+    }
+
     input {
       margin-left: 10px;
+    }
+  }
+
+  .div-submit-button {
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+/*///
+ PREVIEW Styling
+*////
+
+  .preview-component {
+    p {
+      background-color: transparent;
+      border: 0;
+      color: black;
+      width: 700px;
+      margin: 0 auto;
+      -webkit-appearance: textarea;
+      -webkit-rtl-ordering: logical;
+      user-select: text;
+      flex-direction: column;
+      cursor: auto;
+      white-space: pre-wrap;
+      word-break: normal;
+      word-wrap: normal;
+      resize: auto;
+      text-align: left;
+    }
+
+    span {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .header-date, .header-location {
+      margin-bottom: 0;
+    }
+
+    .div-header-release {
+      margin-bottom: 20px;
     }
   }
 
