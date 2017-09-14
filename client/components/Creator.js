@@ -15,7 +15,8 @@ class Creator extends React.Component {
       imgSrc: '/assets/jrl_logo.png',
       crop: false,
       docData: {},
-      showAjaxSpinner: false
+      showAjaxSpinner: false,
+      showPreview: false
     };
 
     this.onDocumentDrag = this.onDocumentDrag.bind(this);
@@ -69,9 +70,16 @@ class Creator extends React.Component {
   }
 
   render() {
-    const { imgSrc, crop, docData, showAjaxSpinner } = this.state;
+    const { imgSrc, crop, docData, showAjaxSpinner, showPreview } = this.state;
 
     return (
+      // TODO: Create two components (dumb?): Preview and Creator.
+      // <div>
+      //   { showPreview ?
+      //     <Preview {...this.state} />
+      //     : <Creator {...this.state} />
+      //   }
+      // </div>
       <div>
         <div className="div-release-main-img">
           <div className={crop ? 'release-main-img-crop' : ''}>
