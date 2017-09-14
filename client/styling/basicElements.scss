@@ -58,6 +58,14 @@ $blue-bold-rgba8: rgba(27, 30, 209, 0.8);
   position: relative;
 }
 
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
