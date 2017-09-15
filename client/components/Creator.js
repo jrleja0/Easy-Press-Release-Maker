@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {BasicInput, BasicInputWithCheckbox, BasicTextArea} from './index';
+import {BasicInput, BasicInputWithCheckbox, BasicTextArea, Preview} from './index';
 
 /*///
  COMPONENT
@@ -12,10 +12,9 @@ class Creator extends React.Component {
     super();
 
     this.state = {
-      imgSrc: '/assets/jrl_logo.png',
-      crop: false,
       docData: {},
-      showAjaxSpinner: false
+      showAjaxSpinner: false,
+      showPreview: false
     };
 
     this.onDocumentDrag = this.onDocumentDrag.bind(this);
@@ -46,7 +45,8 @@ class Creator extends React.Component {
     const reader = new FileReader();
     reader.onload = readEvent => {
       this.setState({
-        imgSrc: readEvent.target.result
+        docData: Object.assign({}, this.state.docData, { imgSrc: readEvent.target.result }),
+        showPreview: true
       });
     };
     reader.readAsDataURL(file);
@@ -55,27 +55,27 @@ class Creator extends React.Component {
   handleChange(event) {
     const dataName = event.target.id;
     this.setState({
-      docData: Object.assign({}, this.state.docData, { [dataName]: event.target.value })
+      docData: Object.assign({}, this.state.docData, { [dataName]: event.target.value }),
+      showPreview: true
     });
   }
 
   handleSubmit(event) {
-    // event.preventDefault();
-    // this.fetchGoogleSearchTitles(this.state.query);
-    // this.setState({
-    //   query: '',
-    //   showAjaxSpinner: true
-    // });
+    event.preventDefault();
+    // TODO: save to database and go to preview or exit.
   }
 
   render() {
-    const { imgSrc, crop, docData, showAjaxSpinner } = this.state;
+    const { docData, showAjaxSpinner, showPreview } = this.state;
 
     return (
       <div>
         <div className="div-release-main-img">
-          <div className={crop ? 'release-main-img-crop' : ''}>
-            <img className="release-main-img img-fluid" src={imgSrc} alt="drag your image here" />
+          <div className={docData['crop'] ? 'release-main-img-crop' : ''}>
+            <img className="release-main-img img-fluid"
+              src={
+                docData['imgSrc'] || '/assets/jrl_logo_draganddrop.png'
+              } alt="drag your image here" />
           </div>
           <div className="div-img-cover" />
         </div>
@@ -92,8 +92,18 @@ class Creator extends React.Component {
                 <BasicTextArea name="Text About Company" handleChange={this.handleChange} inputData={docData[name]} type="text" />
               </tbody>
             </table>
+            <div className="div-submit-button">
+              <button type="submit" className="btn btn-success" disabled>Save and Print</button>
+            </div>
           </form>
         </div>
+        <div>
+          <h3>Live Preview:</h3>
+        </div>
+        { showPreview ?
+          <Preview docData={docData} />
+          : <h5>Nothing To Preview Yet...</h5>
+        }
       </div>
     );
   }
@@ -107,11 +117,3 @@ export default Creator;
 Creator.propTypes = {
 
 };
-
-// Photo Credits
-// Title
-// Date
-// Location
-// Main Text
-// Standard Text about Company
-// Additional information / Sections unique to the company
