@@ -9,9 +9,11 @@ const Preview = ({ docData }) => {
   return (
     <div className="preview-component">
       <div className="div-release-main-img">
-        { docData['imgSrc'] &&
-          <img className="release-main-img img-fluid" src={docData['imgSrc']} alt="drag your image here" />
-        }
+        <div className={docData['crop'] ? 'release-main-img-crop' : ''}>
+          { docData['imgSrc'] &&
+            <img className="release-main-img img-fluid" src={docData['imgSrc']} alt="press-release-image" />
+          }
+        </div>
         <div className="div-img-cover" />
       </div>
       <div className="div-header-release">

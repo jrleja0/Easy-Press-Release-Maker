@@ -1,1 +1,1 @@
-require('./image');
+require('./document');

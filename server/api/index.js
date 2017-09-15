@@ -1,7 +1,7 @@
 const router = require('express').Router();
 module.exports = router;
 
-//router.use('/images', require('./images'));
+router.use('/docs', require('./docs'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');

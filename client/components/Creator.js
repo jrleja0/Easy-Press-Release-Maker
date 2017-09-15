@@ -41,15 +41,17 @@ class Creator extends React.Component {
 
   onPhotoDrop(event) {
     event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    const reader = new FileReader();
-    reader.onload = readEvent => {
-      this.setState({
-        docData: Object.assign({}, this.state.docData, { imgSrc: readEvent.target.result }),
-        showPreview: true
-      });
-    };
-    reader.readAsDataURL(file);
+    if (event.target === document.getElementById('drag-img-here')) {
+      const file = event.dataTransfer.files[0];
+      const reader = new FileReader();
+      reader.onload = readEvent => {
+        this.setState({
+          docData: Object.assign({}, this.state.docData, { imgSrc: readEvent.target.result }),
+          showPreview: true
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   handleChange(event) {
@@ -77,7 +79,7 @@ class Creator extends React.Component {
                 docData['imgSrc'] || '/assets/jrl_logo_draganddrop.png'
               } alt="drag your image here" />
           </div>
-          <div className="div-img-cover" />
+          <div className="div-img-cover" id="drag-img-here" />
         </div>
         <div className="form-container">
           <form onSubmit={this.handleSubmit}>
