@@ -25,21 +25,21 @@ export const fetchUserDocs = () =>
       .then(res => dispatch(loadUserDocs(res.data || [] )))
       .catch(console.error.bind(console));
 
-export const fetchDoc = () =>
+export const fetchDoc = docId =>
   dispatch =>
-    axios.get('api/docs')
+    axios.get(`api/docs/${docId}`)
       .then(res => dispatch(loadSingleDoc(res.data || {} )))
       .catch(console.error.bind(console));
 
-export const saveDoc = () =>
+export const saveDoc = doc =>
   dispatch =>
-    axios.post('api/docs')
+    axios.post('api/docs', doc)
       .then(res => dispatch(saveSingleDoc(res.data || {} )))
       .catch(console.error.bind(console));
 
-export const deleteDoc = () =>
+export const deleteDoc = docId =>
   dispatch =>
-    axios.delete('api/docs')
+    axios.delete(`api/docs/${docId}`)
       .then(res => dispatch(deleteSingleDoc(res.data || {})))
       .catch(console.error.bind(console));
 
