@@ -16,15 +16,15 @@ const removeUser = () => ({ type: REMOVE_USER });
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
-      .then(res =>
-        dispatch(getUser(res.data || defaultUser)));
+      .then(res => dispatch(getUser(res.data || defaultUser)))
+      .catch(console.error.bind(console));
 
 export const auth = (email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data));
-        history.push('/home');
+        history.push('/create');
       })
       .catch(error =>
         dispatch(getUser({error})));
@@ -36,10 +36,10 @@ export const logout = () =>
         dispatch(removeUser());
         history.push('/login');
       })
-      .catch(err => console.log(err));
+      .catch(console.error.bind(console));
 
 // ---------- REDUCER ----------
-export default function (state = defaultUser, action) {
+export default (state = defaultUser, action) => {
   switch (action.type) {
     case GET_USER:
       return action.user;
@@ -48,4 +48,4 @@ export default function (state = defaultUser, action) {
     default:
       return state;
   }
-}
+};

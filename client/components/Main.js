@@ -18,7 +18,8 @@ const Main = (props) => {
       <nav>
         { isLoggedIn ?
           <div>
-            <Link to="/home">Home</Link>
+            {/* <Link to="/home">Home</Link> */}
+            <Link to="/create">Create</Link>
             <a href="#" onClick={handleLogout}>Logout</a>
           </div>
           : <div>

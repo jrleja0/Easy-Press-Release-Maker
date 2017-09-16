@@ -13,7 +13,7 @@ import {me} from './store';
 class Routes extends Component {
 
   componentDidMount () {
-    // this.props.loadInitialData();
+    this.props.loadInitialData();
   }
 
   render () {
@@ -31,7 +31,7 @@ class Routes extends Component {
               </Switch>
               : null
             }
-            <Route component={Login} />
+            <Redirect to="/login" />
           </Switch>
         </Main>
       </Router>
@@ -42,12 +42,14 @@ class Routes extends Component {
 /*///
  CONTAINER
 *////
-const mapState = null;
+const mapState = state => ({
+  isLoggedIn: !!state.user.id
+});
 
-const mapDispatch = (dispatch) => ({
-  // loadInitialData: () => {
-  //   dispatch(/*fetchData()*/);
-  // }
+const mapDispatch = dispatch => ({
+  loadInitialData: () => {
+    dispatch(me());
+  }
 });
 
 export default connect(mapState, mapDispatch)(Routes);
@@ -55,6 +57,7 @@ export default connect(mapState, mapDispatch)(Routes);
 /*///
  PROP TYPES
 *////
-// Routes.propTypes = {
-//   loadInitialData: PropTypes.func.isRequired,
-// };
+Routes.propTypes = {
+  loadInitialData: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
+};

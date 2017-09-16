@@ -44,7 +44,7 @@ export const deleteDoc = docId =>
       .catch(console.error.bind(console));
 
 // ---------- REDUCER ----------
-export default function (state = initState, action) {
+export default (state = initState, action) => {
   const newState = Object.assign({}, state );
   switch (action.type) {
     case LOAD_USER_DOCS:
@@ -63,4 +63,4 @@ export default function (state = initState, action) {
       return newState;
   }
   return newState;
-}
+};
