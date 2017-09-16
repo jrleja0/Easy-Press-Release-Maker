@@ -4,8 +4,8 @@ import {Router} from 'react-router';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import {Creator, Main} from './components';
-//import { fetchImages } from './store';
+import {Creator, Login, Main, Signup} from './components';
+import {me} from './store';
 
 /*///
  COMPONENT
@@ -17,10 +17,22 @@ class Routes extends Component {
   }
 
   render () {
+    const { isLoggedIn } = this.props;
+
     return (
       <Router history={history}>
         <Main>
-          <Creator />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            { isLoggedIn ?
+              <Switch>
+                <Route path="/create" component={Creator} />
+              </Switch>
+              : null
+            }
+            <Route component={Login} />
+          </Switch>
         </Main>
       </Router>
     );
