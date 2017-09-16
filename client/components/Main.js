@@ -1,17 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter, Link} from 'react-router-dom';
+import {logout} from '../store';
 
 /*///
  COMPONENT
 *////
 const Main = (props) => {
+  const { children, handleLogout, isLoggedIn } = props;
+
   return (
     <div>
       <div>
-        <span>Press Release Maker</span>
+        <h3>Press Release Maker</h3>
       </div>
-      {props.children}
+      <nav>
+        { isLoggedIn ?
+          <div>
+            {/* <Link to="/home">Home</Link> */}
+            <Link to="/create">Create</Link>
+            <a href="#" onClick={handleLogout}>Logout</a>
+          </div>
+          : <div>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
+        }
+      </nav>
+      {children}
       <div>
         <pre className="footer-text">
           <span className="glyphicon glyphicon-wrench" aria-hidden="true" />  J R Leja Design NYC    |    Jasiu Leja    |    2017
@@ -21,11 +38,26 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+/*///
+ CONTAINER
+*////
+const mapState = state => ({
+  isLoggedIn: !!state.user.id
+});
+
+const mapDispatch = dispatch => ({
+  handleLogout () {
+    dispatch(logout());
+  }
+});
+
+export default withRouter(connect(mapState, mapDispatch)(Main));
 
 /*///
  PROP TYPES
 *////
 Main.propTypes = {
   children: PropTypes.object,
+  handleLogout: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 };

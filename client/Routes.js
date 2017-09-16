@@ -4,8 +4,8 @@ import {Router} from 'react-router';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import {Creator, Main} from './components';
-//import { fetchImages } from './store';
+import {Creator, Login, Main, Signup} from './components';
+import {me} from './store';
 
 /*///
  COMPONENT
@@ -13,14 +13,26 @@ import {Creator, Main} from './components';
 class Routes extends Component {
 
   componentDidMount () {
-    // this.props.loadInitialData();
+    this.props.loadInitialData();
   }
 
   render () {
+    const { isLoggedIn } = this.props;
+
     return (
       <Router history={history}>
         <Main>
-          <Creator />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            { isLoggedIn ?
+              <Switch>
+                <Route path="/create" component={Creator} />
+              </Switch>
+              : null
+            }
+            <Redirect to="/login" />
+          </Switch>
         </Main>
       </Router>
     );
@@ -30,12 +42,14 @@ class Routes extends Component {
 /*///
  CONTAINER
 *////
-const mapState = null;
+const mapState = state => ({
+  isLoggedIn: !!state.user.id
+});
 
-const mapDispatch = (dispatch) => ({
-  // loadInitialData: () => {
-  //   dispatch(/*fetchData()*/);
-  // }
+const mapDispatch = dispatch => ({
+  loadInitialData: () => {
+    dispatch(me());
+  }
 });
 
 export default connect(mapState, mapDispatch)(Routes);
@@ -43,6 +57,7 @@ export default connect(mapState, mapDispatch)(Routes);
 /*///
  PROP TYPES
 *////
-// Routes.propTypes = {
-//   loadInitialData: PropTypes.func.isRequired,
-// };
+Routes.propTypes = {
+  loadInitialData: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
+};
