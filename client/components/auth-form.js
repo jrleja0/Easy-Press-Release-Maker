@@ -46,7 +46,7 @@ const mapSignup = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  handleSubmit (event) {
+  handleSubmit: event => {
     event.preventDefault();
     const formName = event.target.name;
     const email = event.target.email.value;

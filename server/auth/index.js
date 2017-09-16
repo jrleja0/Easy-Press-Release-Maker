@@ -6,6 +6,7 @@ router.post('/login', (req, res, next) => {
   console.log('login', req.body);
   User.findOne({ where: { email: req.body.email } })
     .then(user => {
+      console.log('login user', user);
       if (!user) {
         res.status(401).send('User not found');
       } else if (!user.correctPassword(req.body.password)) {

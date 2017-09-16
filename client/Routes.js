@@ -4,7 +4,7 @@ import {Router} from 'react-router';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import {Creator, Login, Main, Signup} from './components';
+import {Creator, Login, Main, Menu, Preview, Signup} from './components';
 import {me} from './store';
 
 /*///
@@ -27,7 +27,9 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             { isLoggedIn ?
               <Switch>
+                <Route path="/menu" component={Menu} />
                 <Route path="/create" component={Creator} />
+                <Route path="/preview" component={Preview} />
               </Switch>
               : null
             }

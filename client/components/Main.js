@@ -18,8 +18,7 @@ const Main = (props) => {
       <nav>
         { isLoggedIn ?
           <div>
-            {/* <Link to="/home">Home</Link> */}
-            <Link to="/create">Create</Link>
+            <Link to="/menu">Main Menu</Link>
             <a href="#" onClick={handleLogout}>Logout</a>
           </div>
           : <div>
@@ -46,7 +45,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  handleLogout () {
+  handleLogout: () => {
     dispatch(logout());
   }
 });
