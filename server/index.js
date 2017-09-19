@@ -38,6 +38,13 @@ const createApp = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // // logging session and req.user
+  // app.use(function (req, res, next) {
+  //   console.log('session', req.session);
+  //   console.log('req.user', req.user);
+  //   next();
+  // });
+
   // auth and api routes
   app.use('/auth', require('./auth'));
   app.use('/api', require('./api'));

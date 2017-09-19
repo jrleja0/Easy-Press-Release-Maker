@@ -3,16 +3,15 @@ const {User} = require('../db/models/');
 module.exports = router;
 
 router.post('/login', (req, res, next) => {
-  console.log('login', req.body);
+  // console.log('login', req.body);
   User.findOne({ where: { email: req.body.email } })
     .then(user => {
-      console.log('login user', user);
+      // console.log('login user', user, user.salt, user.password);
       if (!user) {
         res.status(401).send('User not found');
       } else if (!user.correctPassword(req.body.password)) {
         res.status(401).send('Incorrect password');
       } else {
-        console.log('!!!!!!!!!here');
         req.login(user, err => err ? next(err) : res.json(user));
       }
     })
@@ -20,7 +19,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-  console.log('signup', req.body);
+  // console.log('signup', req.body);
   User.create(req.body)
     .then(user => {
       req.login(user, err => err ? next(err) : res.json(user));

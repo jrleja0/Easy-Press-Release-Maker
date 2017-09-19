@@ -25,7 +25,7 @@ module.exports = User;
 /*///
  InstanceMethods
 *////
-User.prototype.correctPassword = candidatePwd => {
+User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt) === this.password;
 };
 
@@ -37,10 +37,7 @@ User.generateSalt = () => {
 };
 
 User.encryptPassword = (plainText, salt) => {
-  // return crypto.createHash('sha1').update(plainText).update(salt).digest('hex');
-  const cryptoResult = crypto.createHash('sha1').update(plainText).update(salt).digest('hex');
-  console.log('!!!!!!!!!!cryptoResult', cryptoResult);
-  return cryptoResult;
+  return crypto.createHash('sha1').update(plainText).update(salt).digest('hex');
 };
 
 /*///

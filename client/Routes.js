@@ -33,7 +33,7 @@ class Routes extends Component {
               </Switch>
               : null
             }
-            <Redirect to="/login" />
+            <Route component={Login} />
           </Switch>
         </Main>
       </Router>
