@@ -37,7 +37,10 @@ User.generateSalt = () => {
 };
 
 User.encryptPassword = (plainText, salt) => {
-  return crypto.createHash('sha1').update(plainText).update(salt).digest('hex');
+  // return crypto.createHash('sha1').update(plainText).update(salt).digest('hex');
+  const cryptoResult = crypto.createHash('sha1').update(plainText).update(salt).digest('hex');
+  console.log('!!!!!!!!!!cryptoResult', cryptoResult);
+  return cryptoResult;
 };
 
 /*///

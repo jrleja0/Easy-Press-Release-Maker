@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../db/models/user');
+const {User} = require('../db/models/');
 module.exports = router;
 
 router.post('/login', (req, res, next) => {
@@ -12,6 +12,7 @@ router.post('/login', (req, res, next) => {
       } else if (!user.correctPassword(req.body.password)) {
         res.status(401).send('Incorrect password');
       } else {
+        console.log('!!!!!!!!!here');
         req.login(user, err => err ? next(err) : res.json(user));
       }
     })
@@ -41,4 +42,4 @@ router.get('/me', (req, res) => {
   res.json(req.user);
 });
 
-//router.use('/google', require('./google'));
+router.use('/google', require('./google'));
