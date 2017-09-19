@@ -30,6 +30,7 @@ class Routes extends Component {
                 <Route path="/menu" component={Menu} />
                 <Route path="/create" component={Creator} />
                 <Route path="/preview" component={Preview} />
+                <Route component={Menu} />
               </Switch>
               : null
             }
