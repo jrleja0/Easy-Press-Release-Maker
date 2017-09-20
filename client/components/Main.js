@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
 import {logout} from '../store';
+import {Footer} from './index';
 
 /*///
  COMPONENT
@@ -28,11 +29,7 @@ const Main = (props) => {
         }
       </nav>
       {children}
-      <div>
-        <pre className="footer-text">
-          <span className="glyphicon glyphicon-wrench" aria-hidden="true" />  J R Leja Design NYC    |    Jasiu Leja    |    2017
-        </pre>
-      </div>
+      <Footer />
     </div>
   );
 };
