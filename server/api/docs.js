@@ -4,17 +4,21 @@ const Document = require('../db').model('document');
 module.exports = router;
 
 // fetch all user's docs
-// router.get('/', (req, res, next) => {
-//   // find user's id
-//   Document.findAll({})
-//     .then(docs => res.json(docs))
-//     .catch(next);
-// });
+router.get('/', (req, res, next) => {
+  Document.findAll({ where: { userId: req.user.id }})
+    .then(docs => res.json(docs))
+    .catch(next);
+});
 
 // fetch single doc
 router.get('/:docId', (req, res, next) => {
+  console.log('req.user', req.user);
   Document.findById(req.params.docId)
-    .then(doc => res.json(doc))
+    .then(doc => {
+      console.log('doc found', doc, doc.userId);
+      // doc.userId === req.user.id ? res.json(doc) : /*ERROR*/;
+      return res.json(doc);
+    })
     .catch(next);
 });
 
