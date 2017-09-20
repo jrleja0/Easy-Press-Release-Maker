@@ -4,7 +4,7 @@ import {Router} from 'react-router';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import {Creator, Login, Main, Menu, Preview, Signup} from './components';
+import {Creator, Login, Main, Menu, PreviewRoute, Signup, SubmitSubmenu} from './components';
 import {me} from './store';
 
 /*///
@@ -21,22 +21,28 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
-        <Main>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            { isLoggedIn ?
-              <Switch>
-                <Route path="/menu" component={Menu} />
-                <Route path="/create" component={Creator} />
-                <Route path="/preview" component={Preview} />
-                <Route component={Menu} />
-              </Switch>
-              : null
-            }
-            <Route component={Login} />
-          </Switch>
-        </Main>
+        <Switch>
+        { isLoggedIn &&
+          <Route path="/preview" component={PreviewRoute} />
+        }
+          <Main>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              { isLoggedIn ?
+                <Switch>
+                  <Route path="/menu" component={Menu} />
+                  <Route path="/create" component={Creator} />
+                  {/* <Route path="/preview" component={PreviewRoute} /> */}
+                  <Route path="/submit" component={SubmitSubmenu} />
+                  <Route component={Menu} />
+                </Switch>
+                : null
+              }
+              <Route component={Login} />
+            </Switch>
+          </Main>
+        </Switch>
       </Router>
     );
   }

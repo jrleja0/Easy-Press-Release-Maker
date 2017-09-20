@@ -65,7 +65,7 @@ class Creator extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(saveDoc(this.docData));
+    store.dispatch(saveDoc(this.state.docData));
   }
 
   render() {

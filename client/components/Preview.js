@@ -1,11 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 /*///
  COMPONENT
 *////
-const Preview = ({ docData }) => {
+export const Preview = ({ docData }) => {
   return (
     <div className="preview-component">
       <div className="div-release-main-img">
@@ -37,7 +38,17 @@ const Preview = ({ docData }) => {
   );
 };
 
-export default Preview;
+/*///
+ CONTAINER
+*////
+const mapState = state => {
+  console.log('docData mapping to props', state.docStore.doc);
+  return ({
+  docData: state.docStore.doc
+})
+};
+
+export default connect(mapState, null)(Preview);
 
 /*///
  PROP TYPES
