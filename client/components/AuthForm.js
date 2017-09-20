@@ -10,7 +10,7 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
+    <div className="auth-form-container">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email"><small>Email</small></label>
@@ -46,7 +46,7 @@ const mapSignup = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  handleSubmit (event) {
+  handleSubmit: event => {
     event.preventDefault();
     const formName = event.target.name;
     const email = event.target.email.value;

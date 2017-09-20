@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 // ---------- ACTION TYPES ----------
 const LOAD_USER_DOCS = 'LOAD_USER_DOCS';
@@ -34,7 +35,10 @@ export const fetchDoc = docId =>
 export const saveDoc = doc =>
   dispatch =>
     axios.post('api/docs', doc)
-      .then(res => dispatch(saveSingleDoc(res.data || {} )))
+      .then(res => {
+        dispatch(saveSingleDoc(res.data || {} ));
+        history.push('/menu');
+      })
       .catch(console.error.bind(console));
 
 export const deleteDoc = docId =>

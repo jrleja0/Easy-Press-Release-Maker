@@ -9,7 +9,8 @@ const User = db.define('user', {
     allowNull: false
   },
   password: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   salt: {
     type: Sequelize.STRING
@@ -24,7 +25,7 @@ module.exports = User;
 /*///
  InstanceMethods
 *////
-User.prototype.correctPassword = candidatePwd => {
+User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt) === this.password;
 };
 

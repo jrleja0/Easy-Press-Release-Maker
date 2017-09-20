@@ -32,3 +32,10 @@ const Document = db.define('document', {
 });
 
 module.exports = Document;
+
+/*///
+ InstanceMethods
+*////
+Document.prototype.mainTextSnippet = () => {
+  return this['Main Text'].slice(0, 50) + '...';
+};

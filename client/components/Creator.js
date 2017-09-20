@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {BasicInput, BasicInputWithCheckbox, BasicTextArea, Preview} from './index';
+import store, { saveDoc } from '../store';
 
 /*///
  COMPONENT
@@ -64,7 +65,7 @@ class Creator extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // TODO: save to database and go to preview or exit.
+    store.dispatch(saveDoc(this.docData));
   }
 
   render() {
@@ -95,7 +96,8 @@ class Creator extends React.Component {
               </tbody>
             </table>
             <div className="div-submit-button">
-              <button type="submit" className="btn btn-success" disabled>Save and Print</button>
+              <button type="submit" className="btn btn-success" disabled={!showPreview}>Save</button>
+              <Link to="/menu" className="btn btn-danger">Exit Without Saving</Link>
             </div>
           </form>
         </div>
