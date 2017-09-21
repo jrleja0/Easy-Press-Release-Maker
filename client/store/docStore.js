@@ -29,7 +29,10 @@ export const fetchUserDocs = () =>
 export const fetchDoc = docId =>
   dispatch =>
     axios.get(`api/docs/${docId}`)
-      .then(res => dispatch(loadSingleDoc(res.data || {} )))
+      .then(res => {
+        dispatch(loadSingleDoc(res.data || {} ));
+        history.push('/create');
+      })
       .catch(console.error.bind(console));
 
 export const saveDoc = doc =>

@@ -6,8 +6,14 @@ module.exports = router;
 // fetch all user's docs
 router.get('/', (req, res, next) => {
   Document.findAll({ where: { userId: req.user.id }})
-    .then(docs => res.json(docs))
-    .catch(next);
+  .then(docs => {
+      console.log('!!!!!!!!!!!fetch all docs', docs, req.user.id)
+      res.json(docs)
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
 });
 
 // fetch single doc
@@ -39,16 +45,16 @@ router.post('/', (req, res, next) => {
   } else {
     // create new Doc and associate with user
     let createdDoc;
-    console.log('!!!!!creating doc, req.body:', req.body);
+    req.body.userId = req.user.id;
     Document.create(req.body)
-      .then(doc => {
-        createdDoc = doc;
-        return req.user.addDocument(doc);
-      })
-      .then(() => {
-        console.log('!!!!!creating doc(2), req.body:', createdDoc);
-        return res.json(createdDoc);
-      })
+      .then(doc => (res.json(doc)))
+      // .then(doc => {
+      //   createdDoc = doc;
+      //   return req.user.addDocument(doc);
+      // })
+      // .then(() => {
+      //   return res.json(createdDoc);
+      // })
       .catch(next);
   }
 });

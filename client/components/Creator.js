@@ -13,7 +13,7 @@ class Creator extends React.Component {
     super();
 
     this.state = {
-      docData: {},
+      docData: store.getState().docStore.doc || {},
       showAjaxSpinner: false,
       showPreview: false
     };
