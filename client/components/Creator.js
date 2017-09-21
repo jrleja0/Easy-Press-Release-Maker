@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {BasicInput, BasicInputWithCheckbox, BasicTextArea, Preview} from './index';
@@ -14,7 +15,6 @@ class Creator extends React.Component {
 
     this.state = {
       docData: store.getState().docStore.doc || {},
-      showAjaxSpinner: false,
       showPreview: false
     };
 
@@ -69,15 +69,16 @@ class Creator extends React.Component {
   }
 
   render() {
-    const { docData, showAjaxSpinner, showPreview } = this.state;
+    const { docData, showPreview } = this.state;
+    console.log('!!!!!!!!!!!docData', docData);
 
     return (
       <div>
         <div className="div-release-main-img">
-          <div className={docData['crop'] ? 'release-main-img-crop' : ''}>
+          <div className={docData.crop ? 'release-main-img-crop' : ''}>
             <img className="release-main-img img-fluid"
               src={
-                docData['imgSrc'] || '/assets/jrl_logo_draganddrop.png'
+                docData.imgSrc || '/assets/jrl_logo_draganddrop.png'
               } alt="drag your image here" />
           </div>
           <div className="div-img-cover" id="drag-img-here" />
@@ -86,13 +87,13 @@ class Creator extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <table>
               <tbody>
-                <BasicInputWithCheckbox name="Image Credits" handleChange={this.handleChange} inputData={docData[name]} type="text" checkboxLabel="Crop Image" />
-                <BasicInput name="Title" handleChange={this.handleChange} inputData={docData[name]} type="text" />
-                <BasicInputWithCheckbox name="Date" handleChange={this.handleChange} inputData={docData[name]} type="date" placeholder="" checkboxLabel="Today's Date" />
-                <BasicInput name="Location" handleChange={this.handleChange} inputData={docData[name]} type="text" />
-                <BasicTextArea name="Main Text" handleChange={this.handleChange} inputData={docData[name]} type="text" />
-                <BasicTextArea name="Secondary Text" handleChange={this.handleChange} inputData={docData[name]} type="text" />
-                <BasicTextArea name="Text About Company" handleChange={this.handleChange} inputData={docData[name]} type="text" />
+                <BasicInputWithCheckbox name="Image Credits" handleChange={this.handleChange} inputData={docData['Image Credits']} type="text" checkboxLabel="Crop Image" />
+                <BasicInput name="Title" handleChange={this.handleChange} inputData={docData.Title} type="text" />
+                <BasicInputWithCheckbox name="Date" handleChange={this.handleChange} inputData={docData.Date} type="date" placeholder="" checkboxLabel="Today's Date" />
+                <BasicInput name="Location" handleChange={this.handleChange} inputData={docData.Location} type="text" />
+                <BasicTextArea name="Main Text" handleChange={this.handleChange} inputData={docData['Main Text']} type="text" />
+                <BasicTextArea name="Secondary Text" handleChange={this.handleChange} inputData={docData['Secondary Text']} type="text" />
+                <BasicTextArea name="Text About Company" handleChange={this.handleChange} inputData={docData['Text About Company']} type="text" />
               </tbody>
             </table>
             <div className="div-submit-button">

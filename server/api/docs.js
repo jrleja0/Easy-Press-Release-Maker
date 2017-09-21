@@ -6,24 +6,16 @@ module.exports = router;
 // fetch all user's docs
 router.get('/', (req, res, next) => {
   Document.findAll({ where: { userId: req.user.id }})
-  .then(docs => {
-      console.log('!!!!!!!!!!!fetch all docs', docs, req.user.id)
-      res.json(docs)
-    })
-    .catch(err => {
-      console.log(err);
-      next(err);
-    });
+    .then(docs => (res.json(docs)))
+    .catch(next);
 });
 
 // fetch single doc
 router.get('/:docId', (req, res, next) => {
-  console.log('req.user', req.user);
   Document.findById(req.params.docId)
     .then(doc => {
-      console.log('doc found', doc, doc.userId);
-      // doc.userId === req.user.id ? res.json(doc) : /*ERROR*/;
-      return res.json(doc);
+      console.log('doc found', 'true?:', doc.userId === req.user.id, doc);
+      return doc.userId === req.user.id ? res.json(doc) : res.json({/*ERROR*/});
     })
     .catch(next);
 });

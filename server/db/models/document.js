@@ -36,6 +36,16 @@ module.exports = Document;
 /*///
  InstanceMethods
 *////
-Document.prototype.mainTextSnippet = () => {
-  return this['Main Text'].slice(0, 50) + '...';
+// Document.prototype.mainTextSnippet = () => {
+//   return this['Main Text'].slice(0, 50) + '...';
+// };
+
+/*///
+ Hooks
+*////
+const mainTextSnipper = doc => {
+  doc.mainTextSnippet = doc['Main Text'].slice(0, 50) + '...';
 };
+
+Document.beforeCreate(mainTextSnipper);
+Document.beforeUpdate(mainTextSnipper);
