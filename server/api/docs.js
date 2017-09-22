@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const User = require('../db').model('user');
 const Document = require('../db').model('document');
 module.exports = router;
 
@@ -33,17 +32,9 @@ router.post('/', (req, res, next) => {
       .catch(next);
   } else {
     // create new Doc and associate with user
-    let createdDoc;
     req.body.userId = req.user.id;
     Document.create(req.body)
       .then(doc => (res.json(doc)))
-      // .then(doc => {
-      //   createdDoc = doc;
-      //   return req.user.addDocument(doc);
-      // })
-      // .then(() => {
-      //   return res.json(createdDoc);
-      // })
       .catch(next);
   }
 });

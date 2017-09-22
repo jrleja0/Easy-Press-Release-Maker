@@ -35,6 +35,9 @@ const Document = db.define('document',
     getterMethods: {
       mainTextSnippet: function() {
         return this['Main Text'].slice(0, 300) + '...';
+      },
+      showPreview: function() {
+        return true;
       }
     }
   }

@@ -10,17 +10,17 @@ export const Preview = ({ docData }) => {
   return (
     <div className="preview-component">
       <div className="div-release-main-img">
-        <div className={docData['crop'] ? 'release-main-img-crop' : ''}>
-          { docData['imgSrc'] &&
-            <img className="release-main-img img-fluid" src={docData['imgSrc']} alt="press-release-image" />
+        <div className={docData.crop ? 'release-main-img-crop' : ''}>
+          { docData.imgSrc &&
+            <img className="release-main-img img-fluid" src={docData.imgSrc} />
           }
         </div>
         <div className="div-img-cover" />
       </div>
       <div className="div-header-release">
-        <h3 className="header-title">{docData['Title']}</h3>
-        <span className="header-date">{docData['Date']}</span>
-        <span className="header-location">{docData['Location']}</span>
+        <h3 className="header-title">{docData.Title}</h3>
+        <span className="header-date">{docData.Date}</span>
+        <span className="header-location">{docData.Location}</span>
       </div>
       <div>
         <p>
@@ -43,8 +43,8 @@ export const Preview = ({ docData }) => {
 *////
 const mapState = state => {
   return ({
-  docData: state.docStore.doc
-})
+    docData: state.docStore.doc
+  });
 };
 
 export default connect(mapState, null)(Preview);

@@ -14,8 +14,7 @@ class Creator extends React.Component {
     super();
 
     this.state = {
-      docData: store.getState().docStore.doc || {},
-      showPreview: false
+      docData: store.getState().docStore.doc || {}
     };
 
     this.onDocumentDrag = this.onDocumentDrag.bind(this);
@@ -47,8 +46,10 @@ class Creator extends React.Component {
       const reader = new FileReader();
       reader.onload = readEvent => {
         this.setState({
-          docData: Object.assign({}, this.state.docData, { imgSrc: readEvent.target.result }),
-          showPreview: true
+          docData: Object.assign({}, this.state.docData,
+            { imgSrc: readEvent.target.result,
+              showPreview: true
+            }),
         });
       };
       reader.readAsDataURL(file);
@@ -58,8 +59,10 @@ class Creator extends React.Component {
   handleChange(event) {
     const dataName = event.target.id;
     this.setState({
-      docData: Object.assign({}, this.state.docData, { [dataName]: event.target.value }),
-      showPreview: true
+      docData: Object.assign({}, this.state.docData,
+        { [dataName]: event.target.value,
+          showPreview: true
+        }),
     });
   }
 
@@ -69,7 +72,7 @@ class Creator extends React.Component {
   }
 
   render() {
-    const { docData, showPreview } = this.state;
+    const { docData } = this.state;
 
     return (
       <div>
@@ -96,7 +99,7 @@ class Creator extends React.Component {
               </tbody>
             </table>
             <div className="div-submit-button">
-              <button type="submit" className="btn btn-success" disabled={!showPreview}>Save</button>
+              <button type="submit" className="btn btn-success" disabled={!docData.showPreview}>Save and View</button>
               <Link to="/menu" className="btn btn-danger">Exit Without Saving</Link>
             </div>
           </form>
@@ -104,7 +107,7 @@ class Creator extends React.Component {
         <div>
           <h3>Live Preview:</h3>
         </div>
-        { showPreview ?
+        { docData.showPreview ?
           <Preview docData={docData} />
           : <h5>Nothing To Preview Yet...</h5>
         }
