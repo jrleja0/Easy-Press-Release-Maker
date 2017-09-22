@@ -4,12 +4,14 @@ import history from '../history';
 // ---------- ACTION TYPES ----------
 const LOAD_USER_DOCS = 'LOAD_USER_DOCS';
 const LOAD_DOC = 'LOAD_DOC';
+const CREATE_NEW_DOC = 'CREATE_NEW_DOC';
 const SAVE_DOC = 'SAVE_DOC';
 const DELETE_DOC = 'DELETE_DOC';
 
 // ---------- ACTION CREATORS ----------
 const loadUserDocs = userDocs => ({ type: LOAD_USER_DOCS, userDocs });
 const loadSingleDoc = doc => ({ type: LOAD_DOC, doc });
+const createNewDoc = () => ({ type: CREATE_NEW_DOC });
 const saveSingleDoc = doc => ({ type: SAVE_DOC, doc });
 const deleteSingleDoc = doc => ({ type: DELETE_DOC, doc });
 
@@ -29,15 +31,25 @@ export const fetchUserDocs = () =>
 export const fetchDoc = docId =>
   dispatch =>
     axios.get(`api/docs/${docId}`)
-      .then(res => dispatch(loadSingleDoc(res.data || {} )))
+      .then(res => {
+        dispatch(loadSingleDoc(res.data || {} ));
+        history.push('/create');
+      })
       .catch(console.error.bind(console));
+
+export const fetchNewDoc = () =>
+  dispatch => {
+    dispatch(createNewDoc());
+    history.push('/create');
+  };
 
 export const saveDoc = doc =>
   dispatch =>
     axios.post('api/docs', doc)
       .then(res => {
+        console.log('res.data saveDoc', res.data)
         dispatch(saveSingleDoc(res.data || {} ));
-        history.push('/menu');
+        history.push('/submit');
       })
       .catch(console.error.bind(console));
 
@@ -56,6 +68,9 @@ export default (state = initState, action) => {
       break;
     case LOAD_DOC:
       newState.doc = action.doc;
+      break;
+    case CREATE_NEW_DOC:
+      newState.doc = {};
       break;
     case SAVE_DOC:
       newState.doc = action.doc;
