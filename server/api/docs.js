@@ -14,7 +14,6 @@ router.get('/', (req, res, next) => {
 router.get('/:docId', (req, res, next) => {
   Document.findById(req.params.docId)
     .then(doc => {
-      console.log('doc found', 'true?:', doc.userId === req.user.id, doc);
       return doc.userId === req.user.id ? res.json(doc) : res.json({/*ERROR*/});
     })
     .catch(next);
@@ -26,11 +25,9 @@ router.post('/', (req, res, next) => {
     // update an existing doc
     Document.findById(req.body.id)
       .then(doc => {
-        console.log('!!!!!updating doc, req.body:', req.body);
         return doc.update(req.body);
       })
       .then(doc => {
-        console.log('!!!!!updating doc(2), req.body:', req.body);
         return res.json(doc);
       })
       .catch(next);

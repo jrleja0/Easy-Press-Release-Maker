@@ -42,7 +42,6 @@ export const Preview = ({ docData }) => {
  CONTAINER
 *////
 const mapState = state => {
-  console.log('docData mapping to props', state.docStore.doc);
   return ({
   docData: state.docStore.doc
 })

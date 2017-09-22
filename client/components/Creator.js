@@ -70,7 +70,6 @@ class Creator extends React.Component {
 
   render() {
     const { docData, showPreview } = this.state;
-    console.log('!!!!!!!!!!!docData', docData);
 
     return (
       <div>

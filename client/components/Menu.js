@@ -25,7 +25,6 @@ const Menu = ({ userDocs, handleCreateNewDoc, handleFetchUserDocs, handleFetchDo
                 <h5>{doc.Title}</h5>
               </a>
               <p>{doc.Date}</p>
-                      {console.log('each doc', doc, doc.mainTextSnippet)}
               <p>{doc.mainTextSnippet}</p>
             </div>
           ))
