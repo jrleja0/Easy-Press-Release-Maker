@@ -1,6 +1,16 @@
 import axios from 'axios';
 import history from '../history';
 
+// ---------- Helper Function ----------
+const updateSavedDocInList = (docList, doc) => {
+  for (let i = 0; i < docList.length; i++) {
+    if (docList[i].id === doc.id) {
+      docList[i] = doc;
+      break;
+    }
+  }
+};
+
 // ---------- ACTION TYPES ----------
 const LOAD_USER_DOCS = 'LOAD_USER_DOCS';
 const LOAD_DOC = 'LOAD_DOC';
@@ -72,6 +82,9 @@ export default (state = initState, action) => {
       newState.doc = {};
       break;
     case SAVE_DOC:
+      if (newState.userDocs) {
+        updateSavedDocInList(newState.userDocs, action.doc);
+      }
       newState.doc = action.doc;
       break;
     case DELETE_DOC:
