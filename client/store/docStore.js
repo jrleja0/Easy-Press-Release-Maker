@@ -47,7 +47,6 @@ export const saveDoc = doc =>
   dispatch =>
     axios.post('api/docs', doc)
       .then(res => {
-        console.log('res.data saveDoc', res.data)
         dispatch(saveSingleDoc(res.data || {} ));
         history.push('/submit');
       })
