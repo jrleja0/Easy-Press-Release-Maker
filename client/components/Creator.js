@@ -47,12 +47,29 @@ class Creator extends React.Component {
       reader.onload = readEvent => {
         this.setState({
           docData: Object.assign({}, this.state.docData,
+            { imgBlob: readEvent.target.result
+            }),
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  }
+
+  readImage(imgData) {
+    if (!imgData) {
+      return '/assets/jrl_logo_draganddrop.png';
+    } else {
+      const reader = new FileReader();
+      reader.onload = readEvent => {
+        this.setState({
+          docData: Object.assign({}, this.state.docData,
             { imgSrc: readEvent.target.result,
               showPreview: true
             }),
         });
       };
-      reader.readAsDataURL(file);
+      const blob = new Blob([imgData], {type: 'image/jpeg'});
+      reader.readAsDataURL(blob);
     }
   }
 
@@ -68,20 +85,24 @@ class Creator extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    delete this.state.docData.imgSrc;
+    console.log('deleted!!!!!!!!', this.state.docData.imgSrc);
     store.dispatch(saveDoc(this.state.docData));
   }
 
   render() {
     const { docData } = this.state;
+    console.log('imgSrc defined? !!!!!!!!!', docData.imgSrc);
+    const imageSource = docData.imgSrc ||
+      this.readImage(docData.imgBlob);
+      // '/assets/jrl_logo_draganddrop.png';
 
     return (
       <div>
         <div className="div-release-main-img">
           <div className={docData.crop ? 'release-main-img-crop' : ''}>
             <img className="release-main-img img-fluid"
-              src={
-                docData.imgSrc || '/assets/jrl_logo_draganddrop.png'
-              } alt="drag your image here" />
+              src={imageSource} alt="drag your image here" />
           </div>
           <div className="div-img-cover" id="drag-img-here" />
         </div>

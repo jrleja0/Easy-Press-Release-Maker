@@ -21,7 +21,6 @@ const data = {
   document: [
     {
       crop: true,
-      imgSrc: 'string',
       Title: 'My 1st Press Release',
       Date: '9/1/2017',
       Location: 'New York City',
@@ -33,7 +32,6 @@ const data = {
     },
     {
       crop: false,
-      imgSrc: 'string',
       Title: 'My 2nd Press Release',
       Date: '9/2/2017',
       Location: 'New York City',
@@ -45,7 +43,6 @@ const data = {
     },
     {
       crop: true,
-      imgSrc: 'string',
       Title: 'My 3rd Press Release',
       Date: '9/3/2017',
       Location: 'New York City',
@@ -57,7 +54,6 @@ const data = {
     },
     {
       crop: false,
-      imgSrc: 'string',
       Title: 'My 4th Press Release',
       Date: '9/4/2017',
       Location: 'New York City',
@@ -69,7 +65,6 @@ const data = {
     },
     {
       crop: true,
-      imgSrc: 'string',
       Title: 'My 1st Press Release',
       Date: '9/1/2017',
       Location: 'New York City',
@@ -81,7 +76,6 @@ const data = {
     },
     {
       crop: false,
-      imgSrc: 'string',
       Title: 'My 2nd Press Release',
       Date: '9/2/2017',
       Location: 'New York City',
@@ -97,10 +91,13 @@ const data = {
 db.sync({force: true})
   .then(() => {
     console.log('Dropped old data, now inserting seed data.');
-    return Promise.map(Object.keys(data), modelName => {
-      return Promise.map(data[modelName], modelInstance => {
-        return db.model(modelName).create(modelInstance);
-      });
+    return Promise.map(data.user, userInstance => {
+      return db.model('user').create(userInstance);
+    });
+  })
+  .then(() => {
+    return Promise.map(data.document, docInstance => {
+      return db.model('document').create(docInstance);
     });
   })
   .then(() => {

@@ -77,6 +77,21 @@ export default (state = initState, action) => {
       break;
     case LOAD_DOC:
       newState.doc = action.doc;
+
+      // TODO: take this blob reader out of the reducer:
+      // TODO: put it in Creator and pass to Preview as props.
+      // if (newState.doc.imgBlob) {
+      //   const reader = new FileReader();
+      //   reader.onload = readEvent => {
+      //     newState.doc.imgSrc = readEvent.target.result;
+      //     console.log('imgSrc ON STATE!!!!!!', newState.doc.imgSrc);
+      //     return newState;
+      //   };
+      //   console.log('type of imgBlob!!!!!!', newState.doc.imgBlob, typeof newState.doc.imgBlob);
+      //   const blob = new Blob([newState.doc.imgBlob], {type: 'image/jpeg'});
+      //   return reader.readAsDataURL(blob);
+      // }
+
       break;
     case CREATE_NEW_DOC:
       newState.doc = {};
