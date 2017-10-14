@@ -6,12 +6,12 @@ const Document = db.define('document',
     crop: {
       type: Sequelize.BOOLEAN
     },
-    imgBlob: {
-      type: Sequelize.BLOB,
-    },
-    // imgSrc: {
-    //   type: Sequelize.STRING
+    // imgBlob: {
+    //   type: Sequelize.BLOB,
     // },
+    imgSrc: {
+      type: Sequelize.TEXT
+    },
     Title: {
       type: Sequelize.STRING
     },

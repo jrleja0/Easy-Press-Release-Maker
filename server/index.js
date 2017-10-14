@@ -25,8 +25,8 @@ const createApp = () => {
   app.use(morgan('dev'));
 
   // body parsing middleware
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json({ limit: '1GB' }));
+  app.use(bodyParser.urlencoded({ limit: '1GB', extended: true }));
 
   // session middleware with passport
   app.use(session({
