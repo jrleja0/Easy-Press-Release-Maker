@@ -6,7 +6,10 @@ module.exports = router;
 router.get('/', (req, res, next) => {
   Document.findAll({ where: { userId: req.user.id }})
     .then(docs => (res.json(docs)))
-    .catch(next);
+    .catch(err => {
+      console.error(err);
+      next(err);
+    });
 });
 
 // fetch single doc
@@ -35,7 +38,10 @@ router.post('/', (req, res, next) => {
     req.body.userId = req.user.id;
     Document.create(req.body)
       .then(doc => (res.json(doc)))
-      .catch(next);
+      .catch(err => {
+        console.error(err);
+        next(err);
+      });
   }
 });
 

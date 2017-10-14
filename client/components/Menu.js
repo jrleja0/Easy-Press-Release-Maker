@@ -20,11 +20,14 @@ const Menu = ({ userDocs, handleCreateNewDoc, handleFetchUserDocs, handleFetchDo
       { userDocs && userDocs.length ?
           userDocs.map(doc => (
             <div key={doc.Title}>
-              <img className="img-fluid" src={doc.imgSrc} />
               <a role="button" tabIndex="0" onClick={() => handleFetchDoc(doc.id)}>
-                <h5>{doc.Title}</h5>
+                <h3>{doc.Title}</h3>
               </a>
+              { doc.imgSrc &&
+              <img className="img-fluid menu-img-thumbnail" src={doc.imgSrc} />
+              }
               <p>{doc.Date}</p>
+              <p>{doc.Location}</p>
               <p>{doc.mainTextSnippet}</p>
             </div>
           ))

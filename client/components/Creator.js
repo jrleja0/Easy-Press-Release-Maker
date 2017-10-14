@@ -45,9 +45,10 @@ class Creator extends React.Component {
       const file = event.dataTransfer.files[0];
       const reader = new FileReader();
       reader.onload = readEvent => {
+        const imageData = readEvent.target.result;
         this.setState({
           docData: Object.assign({}, this.state.docData,
-            { imgSrc: readEvent.target.result,
+            { imgSrc: imageData,
               showPreview: true
             }),
         });
@@ -79,8 +80,8 @@ class Creator extends React.Component {
         <div className="div-release-main-img">
           <div className={docData.crop ? 'release-main-img-crop' : ''}>
             <img className="release-main-img img-fluid"
-              src={
-                docData.imgSrc || '/assets/jrl_logo_draganddrop.png'
+              src={ docData.imgSrc ||
+                '/assets/jrl_logo_draganddrop.png'
               } alt="drag your image here" />
           </div>
           <div className="div-img-cover" id="drag-img-here" />

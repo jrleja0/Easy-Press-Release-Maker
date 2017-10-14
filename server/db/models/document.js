@@ -7,7 +7,7 @@ const Document = db.define('document',
       type: Sequelize.BOOLEAN
     },
     imgSrc: {
-      type: Sequelize.STRING
+      type: Sequelize.TEXT
     },
     Title: {
       type: Sequelize.STRING
@@ -34,7 +34,9 @@ const Document = db.define('document',
   {
     getterMethods: {
       mainTextSnippet: function() {
-        return this['Main Text'].slice(0, 300) + '...';
+        return this['Main Text'] ?
+          this['Main Text'].slice(0, 300) + '...'
+          : null;
       },
       showPreview: function() {
         return true;
