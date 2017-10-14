@@ -6,9 +6,6 @@ const Document = db.define('document',
     crop: {
       type: Sequelize.BOOLEAN
     },
-    // imgBlob: {
-    //   type: Sequelize.BLOB,
-    // },
     imgSrc: {
       type: Sequelize.TEXT
     },

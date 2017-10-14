@@ -52,52 +52,10 @@ class Creator extends React.Component {
               showPreview: true
             }),
         });
-        // this.setState({
-        //   docData: Object.assign({}, this.state.docData,
-        //     { imgSrc: imageData,
-        //       imgBlob: imageData.replace('data:' + file.type + ';base64,', ''),
-        //       showPreview: true
-        //     }),
-        // });
       };
       reader.readAsDataURL(file);
     }
   }
-
-
-  // onPhotoDrop(event) {
-  //   event.preventDefault();
-  //   if (event.target === document.getElementById('drag-img-here')) {
-  //     const file = event.dataTransfer.files[0];
-  //     const reader = new FileReader();
-  //     reader.onload = readEvent => {
-  //       this.setState({
-  //         docData: Object.assign({}, this.state.docData,
-  //           { imgData: readEvent.target.result
-  //           }),
-  //       });
-  //     };
-  //     reader.readAsArrayBuffer(file);
-  //   }
-  // }
-
-  // readImage(imgData) {
-  //   if (!imgData) {
-  //     return '/assets/jrl_logo_draganddrop.png';
-  //   } else {
-  //     const reader = new FileReader();
-  //     reader.onload = readEvent => {
-  //       this.setState({
-  //         docData: Object.assign({}, this.state.docData,
-  //           { imgSrc: readEvent.target.result,
-  //             showPreview: true
-  //           }),
-  //       });
-  //     };
-  //     const blob = new Blob([imgData], {type: 'image/jpeg'});
-  //     reader.readAsDataURL(blob);
-  //   }
-  // }
 
   handleChange(event) {
     const dataName = event.target.id;
@@ -111,25 +69,20 @@ class Creator extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // const updatedDoc = Object.assign({}, this.state.docData);
-    // delete updatedDoc.imgSrc;
-    // console.log('deleted!!!!!!!!', updatedDoc.imgSrc, this.state.docData.imgSrc);
     store.dispatch(saveDoc(this.state.docData));
   }
 
   render() {
     const { docData } = this.state;
-    console.log('imgSrc defined? !!!!!!!!!', docData.imgSrc);
-    const imageSource = docData.imgSrc ||
-      // this.readImage(docData.imgData);
-      '/assets/jrl_logo_draganddrop.png';
 
     return (
       <div>
         <div className="div-release-main-img">
           <div className={docData.crop ? 'release-main-img-crop' : ''}>
             <img className="release-main-img img-fluid"
-              src={imageSource} alt="drag your image here" />
+              src={ docData.imgSrc ||
+                '/assets/jrl_logo_draganddrop.png'
+              } alt="drag your image here" />
           </div>
           <div className="div-img-cover" id="drag-img-here" />
         </div>
