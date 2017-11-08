@@ -3,10 +3,12 @@
 *////
 
 // bold
+$grey: rgb(135, 138, 142);
 
 // dark
 
 // light
+$grey-with-blue: rgb(158, 180, 214);
 
 // translucent
 $light-bright-blue-rgba6: rgba(0, 216, 255, 0.6);
@@ -40,7 +42,7 @@ $blue-bold-rgba8: rgba(27, 30, 209, 0.8);
 // $yellow-rgba: rgba(247, 247, 12, 0.8);
 
 .blue-background {
-  background-color: $light-bright-blue-rgba6;
+  background-color: $grey-with-blue;
 }
 
 .main-font {
@@ -91,8 +93,8 @@ body {
   @extend .blue-background;
   @extend .main-font;
 
-  a, a:hover {
-    color: white;
+  a, a:hover, a:focus {
+    color: black;
     text-decoration: none;
   }
 
@@ -128,6 +130,74 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+  }
+
+/*///
+ Buttons
+*////
+
+  .btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+
+  .btn-success {
+    color: white;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+  }
+
+  .btn-success:hover {
+    background-color: #449d44;
+    border-color: #398439;
+  }
+
+  .btn-primary {
+    color: white;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+  }
+
+  .btn-primary:hover {
+    background-color: #286090;
+    border-color: #204d74;
+  }
+
+/*///
+ Headings
+*////
+
+  h1 {
+    font-size: 36px;
+    margin: .67em 0;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
   }
 
   // .basic-div-main-title {
@@ -170,47 +240,87 @@ body {
 
 /* pseudo elements */
 
-  // // .btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before
-  // .clearfix:after, .clearfix:before, .container:after, .container:before, .container-fluid:after, .container-fluid:before, .navbar-header:after, .navbar-header:before, .row:after, .row.before, .stylingMainNavbar:after, .stylingMainNavbar:before {
-  //   display: table;
-  //   content: " ";
-  // }
+  .btn-group-vertical>.btn-group::after, .btn-group-vertical>.btn-group::before, .btn-toolbar::after, .btn-toolbar::before, .clearfix::after, .clearfix::before, .container-fluid::after, .container-fluid::before, .container::after, .container::before, .dl-horizontal dd::after, .dl-horizontal dd::before, .form-horizontal .form-group::after, .form-horizontal .form-group::before, .modal-footer::after, .modal-footer::before, .modal-header::after, .modal-header::before, .nav::after, .nav::before, .navbar-collapse::after, .navbar-collapse::before, .navbar-header::after, .navbar-header::before, .navbar::after, .navbar::before, .pager::after, .pager::before, .panel-body::after, .panel-body::before, .row::after, .row::before {
+    display: table;
+    content: " ";
+  }
 
-  // // .btn-group-vertical>.btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after
-  // .clearfix:after, .container:after, .container-fluid:after, .navbar-header:after, .row:after, .stylingMainNavbar:after {
-  //   clear: both;
-  // }
+  .btn-group-vertical>.btn-group::after, .btn-toolbar::after, .clearfix::after, .container-fluid::after, .container::after, .dl-horizontal dd::after, .form-horizontal .form-group::after, .modal-footer::after, .modal-header::after, .nav::after, .navbar-collapse::after, .navbar-header::after, .navbar::after, .pager::after, .panel-body::after, .row::after {
+    clear: both;
+  }
 
 /* grid system */
 
-//   .container, .container-fluid {
-//     margin-left: auto;
-//     margin-right: auto;
-//     padding-left: 15px;
-//     padding-right: 15px;
-//   }
+  .container, .container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
-//   @media (min-width: 768px) {
-//     .container {
-//       width: 750px;
-//     }
-//   }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .container {
+      width: 750px;
+    }
+  }
 
-//   @media (min-width: 992px) {
-//     .container {
-//       width: 970px;
-//     }
-//   }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+      width: 970px;
+    }
+  }
 
-//   @media (min-width: 1200px) {
-//     .container {
-//       width: 1170px;
-//     }
-//   }
+  @media screen and (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
 
-//   .row {
-//     margin-left: -15px;
-//     margin-right: -15px;
-//   }
+    .lg-clearfix::after {
+      display: table;
+      content: " ";
+      clear: both;
+    }
+  }
+
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  @for $i from 1 through 12 {
+    //small
+    @media screen and (min-width : 768px) and (max-width: 991px) {
+      .col-sm-#{$i} {
+        width: percentage($i / 12);
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+    // medium
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+      .col-md-#{$i} {
+        width: percentage($i / 12);
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+    // large
+    @media screen and (min-width: 1200px) {
+      .col-lg-#{$i} {
+        width: percentage($i / 12);
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+  }
 
 }
