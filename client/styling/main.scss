@@ -34,7 +34,6 @@ body {
     padding-right: 0;
   }
 
-
 /*///
  MAIN (Footer) Styling
 *////
@@ -68,11 +67,12 @@ body {
 
   .div-main-menu-buttons {
     display: inline-block;
+    padding-bottom: 10px;
 
     .btn {
       height: 180px;
       width: 300px;
-      padding-top: 60px;
+      padding-top: 75px;
       font-size: 30px;
     }
 
@@ -85,6 +85,51 @@ body {
 
   }
 
+  .top-border {
+    border-top: 3px solid $grey;
+    padding-bottom: 10px;
+  }
+
+  .div-menu-document {
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+    // img, div {
+    //   float: left;
+    //   position: relative;
+    //   left: 20px;
+    // }
+
+    p {
+    //   position: relative;
+    //   left: 20px;
+      padding: 0 10px;
+    }
+
+    .p-no-image {
+      padding-top: 45px;
+      color: $grey;
+    }
+
+  }
+
+  .div-menu-document:hover {
+    border: 3px solid $grey;
+    @include border-radius(10px);
+    background-color: $grey-with-blue-brighter-rgba8;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    p {
+      padding: 0 7px;
+    }
+
+    .p-no-image {
+      padding-top: 45px;
+    }
+
+  }
+
   .menu-img-thumbnail {
     width: 150px;
     height: 150px;
@@ -93,7 +138,8 @@ body {
   }
 
   .no-thumbnail-fill {
-    background-color: $grey;
+    border: 2px solid $grey;
+    background-color: $grey-rgba5;
   }
 
 /*///

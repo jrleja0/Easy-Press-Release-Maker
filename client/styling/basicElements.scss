@@ -9,10 +9,13 @@ $grey: rgb(135, 138, 142);
 
 // light
 $grey-with-blue: rgb(158, 180, 214);
+$grey-with-blue-brighter: rgb(118, 157, 216);
 
 // translucent
-$light-bright-blue-rgba6: rgba(0, 216, 255, 0.6);
+$grey-with-blue-brighter-rgba8: rgba(118, 157, 216, 0.8);
+$light-bright-blue-rgba4: rgba(0, 216, 255, 0.4);
 $blue-bold-rgba8: rgba(27, 30, 209, 0.8);
+$grey-rgba5: rgba(135, 138, 142, 0.5);
 
 
 // // bold
@@ -94,6 +97,7 @@ body {
   @extend .main-font;
 
   a, a:hover, a:focus {
+    cursor: pointer;
     color: black;
     text-decoration: none;
   }
@@ -137,6 +141,7 @@ body {
 *////
 
   .btn {
+    color: white;
     cursor: pointer;
     display: inline-block;
     padding: 6px 12px;
@@ -150,7 +155,7 @@ body {
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px;
+    @include border-radius(4px);
   }
 
   .btn-success {
@@ -159,7 +164,8 @@ body {
     border-color: #4cae4c;
   }
 
-  .btn-success:hover {
+  .btn-success:hover, .btn-success:focus {
+    color: white;
     background-color: #449d44;
     border-color: #398439;
   }
@@ -170,7 +176,8 @@ body {
     border-color: #2e6da4;
   }
 
-  .btn-primary:hover {
+  .btn-primary:hover, .btn-primary:focus {
+    color: white;
     background-color: #286090;
     border-color: #204d74;
   }

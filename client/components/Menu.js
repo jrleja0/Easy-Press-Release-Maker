@@ -20,18 +20,21 @@ const Menu = ({ userDocs, handleCreateNewDoc, handleFetchUserDocs, handleFetchDo
       { userDocs && userDocs.length ?
           userDocs.map((doc, i) => (
             <div key={doc.Title}>
-              <div className="col-sm-12 col-md-6 col-lg-4">
-                <a role="button" tabIndex="0" onClick={() => handleFetchDoc(doc.id)}>
+              { i === 0 && <div className="top-border" /> }
+              <a role="button" tabIndex="0" onClick={() => handleFetchDoc(doc.id)}>
+                <div className="col-sm-12 col-md-6 col-lg-4 div-menu-document" >
                   <h3>{doc.Title}</h3>
-                </a>
-                { doc.imgSrc ?
-                  <img className="img-fluid menu-img-thumbnail" src={doc.imgSrc} />
-                  : <div className="img-fluid menu-img-thumbnail no-thumbnail-fill" />
-                }
-                <p>{doc.Date}</p>
-                <p>{doc.Location}</p>
-                <p>{doc.mainTextSnippet}</p>
-              </div>
+                  { doc.imgSrc ?
+                    <img className="img-fluid menu-img-thumbnail" src={doc.imgSrc} />
+                    : <div className="img-fluid menu-img-thumbnail no-thumbnail-fill">
+                        <p className="p-no-image">[ No Image ]</p>
+                      </div>
+                  }
+                  <p>{doc.Date}</p>
+                  <p>{doc.Location}</p>
+                  <p>{doc.mainTextSnippet}</p>
+                </div>
+              </a>
               { (i + 1) % 3 === 0 ?
                 <div className="lg-clearfix" />
                 : null
