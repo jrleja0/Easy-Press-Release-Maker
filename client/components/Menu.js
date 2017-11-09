@@ -11,10 +11,10 @@ const Menu = ({ userDocs, handleCreateNewDoc, handleFetchUserDocs, handleFetchDo
   return (
     <div>
       <div className="div-main-menu-buttons">
-        <a role="button" className={'btn btn-success' + (userDocs && userDocs.length ? ' btn-small' : '')} tabIndex="0" onClick={handleCreateNewDoc}>Create New Doc</a>
+        <a role="button" className={'btn-success' + (userDocs && userDocs.length ? ' btn-small-main' : ' btn-main')} tabIndex="0" onClick={handleCreateNewDoc}>Create New Doc</a>
       </div>
       <div className="div-main-menu-buttons" style={{display: userDocs && userDocs.length ? 'none' : 'initial'}}>
-        <a role="button" className="btn btn-primary" tabIndex="0" onClick={handleFetchUserDocs}>Open Saved Doc</a>
+        <a role="button" className="btn-main btn-primary" tabIndex="0" onClick={handleFetchUserDocs}>Open Saved Doc</a>
       </div>
       <div className="container-fluid">
       { userDocs && userDocs.length ?

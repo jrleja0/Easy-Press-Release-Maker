@@ -8,14 +8,18 @@ import {Link} from 'react-router-dom';
 const SubmitSubmenu = ({ docData }) => {
   return (
     <div>
-      <div>
-        <h5>Your document saved successfully.<br />Would you like to view the final doc or return to the main menu?</h5>
+      <div className="text-submit-submenu">
+        <p>Your document saved successfully.<br /><span className="sm-text">Would you like to view the final doc or return to the main menu?</span></p>
       </div>
-      <div>
-        <Link to="/Preview" className="btn btn-success">View Final Doc</Link>
-      </div>
-      <div>
-        <Link to="/Menu" className="btn btn-primary">Back To Main Menu</Link>
+      <div className="div-submit-button container-fluid">
+        <div className="row">
+          <div className="col-lg-2 col-md-2" />
+          <div className="div-panel-submit-button col-lg-8 col-md-8 col-sm-12">
+            <Link to="/Preview" className="btn-success btn-small">View Final Doc</Link>
+            <Link to="/Menu" className="btn-primary btn-small move-right">Back To Main Menu</Link>
+          </div>
+          <div className="col-lg-2 col-md-2" />
+        </div>
       </div>
     </div>
   );

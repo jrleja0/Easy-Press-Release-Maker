@@ -69,18 +69,16 @@ body {
     display: inline-block;
     padding-bottom: 10px;
 
-    .btn {
+    .btn-main {
+      @extend .btn;
       height: 180px;
       width: 300px;
       padding-top: 75px;
       font-size: 30px;
     }
 
-    .btn-small {
-      font-size: 18px;
-      padding: 14px 20px;
-      width: initial;
-      height: initial;
+    .btn-small-main {
+      @extend .btn-small;
     }
 
   }
@@ -178,6 +176,10 @@ body {
     }
   }
 
+  .form-group {
+    margin-bottom: 15px;
+  }
+
   .input-basic {
     div {
       display: inherit;
@@ -188,6 +190,21 @@ body {
       margin-top: 5px;
       margin-bottom: 5px;
       font-size: 16px;
+      display: block;
+      height: 34px;
+      padding: 6px 12px;
+      line-height: 22px;
+      color: $grey-text;
+      background-color: white;
+      background-image: none;
+      // border: 1px solid $grey;
+      @include border-radius(4px);
+      @extend .box-shadow;
+    }
+
+    textarea.form-control {
+      overflow: auto;
+      height: auto;
     }
 
     label {
@@ -196,6 +213,7 @@ body {
   }
 
   .checkbox-basic {
+    // @extend .input-basic;
     padding-left: 15px;
 
     div {
@@ -208,10 +226,47 @@ body {
   }
 
   .div-submit-button {
+    margin-top: 10px;
+    padding: 10px;
+
     button {
-      display: block;
+      display: inline-block;
       margin: 0 auto;
     }
+
+    .move-right {
+      position: relative;
+      left: 20px;
+    }
+  }
+
+/*///
+ SUBMIT SUBMENU Styling
+*////
+
+  .text-submit-submenu {
+
+    p {
+    font-size: 24px;
+    line-height: 32px;
+    }
+
+    br {
+      line-height: 42px;
+    }
+
+    .sm-text {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+
+  .div-panel-submit-button {
+    margin: 0 auto;
+    height: 100px;
+    background-color: $grey;
+    padding-top: 25px;
   }
 
 /*///
