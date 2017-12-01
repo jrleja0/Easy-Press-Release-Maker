@@ -34,6 +34,10 @@ body {
 
   @media only screen and (max-width: 480px) {
 
+    .div-submit-button .move-right {
+      left: 8px;
+    }
+
     .footer-text {
       font-size: 16px;
     }

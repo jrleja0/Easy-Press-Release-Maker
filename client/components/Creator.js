@@ -99,13 +99,13 @@ class Creator extends React.Component {
                 <BasicTextArea name="Text About Company" handleChange={this.handleChange} inputData={docData['Text About Company']} type="text" />
               </tbody>
             </table>
-            <div className="div-submit-button">
-              <button type="submit" className="btn btn-success" disabled={!docData.showPreview}>Save and View</button>
-              <Link to="/menu" className="btn btn-danger">Exit Without Saving</Link>
+            <div className="div-submit-button top-border">
+              <button type="submit" className="btn-success btn-small" disabled={!docData.showPreview}>Save and View</button>
+              <Link to="/menu" className="btn-danger btn-small move-right">Exit Without Saving</Link>
             </div>
           </form>
         </div>
-        <div>
+        <div className="top-border">
           <h3>Live Preview:</h3>
         </div>
         { docData.showPreview ?

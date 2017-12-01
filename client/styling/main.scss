@@ -5,6 +5,36 @@
 body {
 
 /*///
+ MAIN (Navbar) Styling
+*////
+
+  nav a {
+    padding: 0 10px;
+  }
+
+  nav a:hover {
+    font-weight: 800;
+  }
+
+  nav a:active {
+    color: $grey;
+  }
+
+  .nav-div-menu-option {
+    display: inline-block;
+    width: 150px;
+    margin: 6px 0 20px 0;
+    text-align: right;
+    padding-right: 24px;
+  }
+
+  .nav-right {
+    text-align: left;
+    padding-left: 24px;
+    padding-right: 0;
+  }
+
+/*///
  MAIN (Footer) Styling
 *////
 
@@ -35,8 +65,79 @@ body {
  MENU Styling
 *////
 
+  .div-main-menu-buttons {
+    display: inline-block;
+    padding-bottom: 10px;
+
+    .btn-main {
+      @extend .btn;
+      height: 180px;
+      width: 300px;
+      padding-top: 75px;
+      font-size: 30px;
+    }
+
+    .btn-small-main {
+      @extend .btn-small;
+    }
+
+  }
+
+  .top-border {
+    border-top: 3px solid $grey;
+    padding-bottom: 10px;
+  }
+
+  .div-menu-document {
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+    // img, div {
+    //   float: left;
+    //   position: relative;
+    //   left: 20px;
+    // }
+
+    p {
+    //   position: relative;
+    //   left: 20px;
+      padding: 0 10px;
+    }
+
+    .p-no-image {
+      padding-top: 45px;
+      color: $grey;
+    }
+
+  }
+
+  .div-menu-document:hover {
+    border: 3px solid $grey;
+    @include border-radius(10px);
+    background-color: $grey-with-blue-brighter-rgba8;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    p {
+      padding: 0 7px;
+    }
+
+    .p-no-image {
+      padding-top: 45px;
+    }
+
+  }
+
   .menu-img-thumbnail {
     width: 150px;
+    height: 150px;
+    margin: auto;
+    text-align: inherit;
+  }
+
+  .no-thumbnail-fill {
+    border: 2px solid $grey;
+    background-color: $grey-rgba5;
   }
 
 /*///
@@ -75,6 +176,10 @@ body {
     }
   }
 
+  .form-group {
+    margin-bottom: 15px;
+  }
+
   .input-basic {
     div {
       display: inherit;
@@ -85,6 +190,21 @@ body {
       margin-top: 5px;
       margin-bottom: 5px;
       font-size: 16px;
+      display: block;
+      height: 34px;
+      padding: 6px 12px;
+      line-height: 22px;
+      color: $grey-text;
+      background-color: white;
+      background-image: none;
+      // border: 1px solid $grey;
+      @include border-radius(4px);
+      @extend .box-shadow;
+    }
+
+    textarea.form-control {
+      overflow: auto;
+      height: auto;
     }
 
     label {
@@ -93,6 +213,7 @@ body {
   }
 
   .checkbox-basic {
+    // @extend .input-basic;
     padding-left: 15px;
 
     div {
@@ -105,10 +226,47 @@ body {
   }
 
   .div-submit-button {
+    margin-top: 10px;
+    padding: 10px;
+
     button {
-      display: block;
+      display: inline-block;
       margin: 0 auto;
     }
+
+    .move-right {
+      position: relative;
+      left: 20px;
+    }
+  }
+
+/*///
+ SUBMIT SUBMENU Styling
+*////
+
+  .text-submit-submenu {
+
+    p {
+    font-size: 24px;
+    line-height: 32px;
+    }
+
+    br {
+      line-height: 42px;
+    }
+
+    .sm-text {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+
+  .div-panel-submit-button {
+    margin: 0 auto;
+    height: 100px;
+    background-color: $grey;
+    padding-top: 25px;
   }
 
 /*///

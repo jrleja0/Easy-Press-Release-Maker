@@ -6,7 +6,7 @@ Currently in development. Not yet deployed.
 
 ## Description
 
-Short on time? Need to write a press release immediately? This app is here to help.
+This fullstack RESTful CRUD app creates press releases quickly and easily.
 
 ## Connect with Me
 
